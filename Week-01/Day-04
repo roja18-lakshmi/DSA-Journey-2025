@@ -1,0 +1,44 @@
+
+class Solution {
+    public int[] sortArray(int[] nums) {
+        ms(nums,0,nums.length-1);
+        return nums;
+    }
+    public void ms(int[] nums,int i,int j) {
+        if(i<j){
+            int mid=i+(j-i)/2;
+            ms(nums,i,mid);
+            ms(nums,mid+1,j);
+            mss(nums,i,j,mid);
+        }
+    }
+    public void mss(int[] nums,int i,int j,int mid) {
+        int[] l1=new int[mid-i+2];
+        int[] l2=new int[j-mid+1];
+        int c=0;
+        for(int k=i;k<=mid;k++){
+            l1[c]=nums[k];
+            c++;
+        }
+        l1[c]=Integer.MAX_VALUE;
+        c=0;
+        for(int k=mid+1;k<=j;k++){
+            l2[c]=nums[k];
+            c++;
+        }
+        l2[c]=Integer.MAX_VALUE;
+        int m=0;
+        int n=0;
+        while(i<=j){
+            if(l1[m]<=l2[n]){
+                nums[i]=l1[m];
+                m++;
+            }
+            else{
+                nums[i]=l2[n];
+                n++;
+            }
+            i++;
+        }
+    }
+}
