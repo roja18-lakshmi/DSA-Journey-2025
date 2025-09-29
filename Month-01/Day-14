@@ -1,0 +1,35 @@
+//https://leetcode.com/problems/partition-array-according-to-given-pivot/
+class Solution {
+    public int[] pivotArray(int[] nums, int p) {
+        int n=nums.length;
+        int i=0;
+        int j=n-1;
+        int[] res=new int[n];
+        int r=0;
+        int t=n-1;
+        int lp=0;
+        int c=0;
+        for(int l=0;l<n;l++){
+            if(nums[i]<p){
+                res[r]=nums[i];
+                r++;
+                lp++;
+            }
+            if(nums[j]>p){
+                res[t]=nums[j];
+                t--;
+            }
+            if(nums[i]==p){
+                c++;
+            }
+            i++;
+            j--;
+        }
+        while(c>0){
+            res[lp]=p;
+            lp++;
+            c--;
+        }
+        return res;
+    }
+}
