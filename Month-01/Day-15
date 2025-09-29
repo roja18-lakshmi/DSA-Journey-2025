@@ -1,0 +1,37 @@
+//https://leetcode.com/problems/jump-game/description/
+class Solution {
+    public boolean canJump(int[] nums) {
+        int r=0;
+        for(int i=0;i<nums.length;i++){
+            if(i>r){
+                return false;
+            }
+            r=Math.max(r,i+nums[i]);
+        }
+        return true;
+    }
+}
+
+
+//brute force(recurrsion)-time limite exceeded
+class Solution {
+    public boolean canJump(int[] nums) {
+        return jump(nums,0);
+    }
+    public boolean jump(int[] nums,int i){
+        int n=nums.length;
+        if(i==n-1){
+            return true;
+        }
+        int t=nums[i];
+        while(t>0){
+            if(i+t<n){
+                if(jump(nums,i+t)){
+                    return true;
+                }
+            }
+            t--;
+        }
+        return false;
+    }
+}
