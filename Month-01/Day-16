@@ -1,0 +1,27 @@
+//https://leetcode.com/problems/count-and-say/
+class Solution {
+    public String countAndSay(int n) {
+        if(n==1){
+            return "1";
+        }
+        String curr="1";
+        for(int j=2;j<=n;j++){
+           curr=fun(curr);
+        }
+        return curr;
+    }
+    public String fun(String curr) {
+        String s="";
+        int c=1;
+        for(int j=0;j<curr.length()-1;j++){
+            if(curr.charAt(j)!=curr.charAt(j+1)){
+                s += c+""+curr.charAt(j);
+                c=1;
+            }else{
+                c+=1;
+            }
+        }
+        s += c+""+curr.charAt(curr.length() - 1);
+        return s;
+    }
+}
