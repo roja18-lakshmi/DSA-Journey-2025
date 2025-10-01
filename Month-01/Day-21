@@ -1,0 +1,74 @@
+//https://leetcode.com/problems/set-matrix-zeroes/
+//in space complexity-O(m+n) using two set we also keep two boolean arrays
+class Solution {
+    public void setZeroes(int[][] matrix) {
+        Set<Integer>r=new HashSet<>();
+        Set<Integer>c=new HashSet<>();
+        int m=matrix.length;
+        int n=matrix[0].length;
+        for(int i=0;i<m;i++){
+            for(int j=0;j<n;j++){
+                if(matrix[i][j]==0){
+                    r.add(i);
+                    c.add(j);
+                }
+            }
+        }
+        for(int k:r){
+            for(int i=0;i<n;i++){
+                matrix[k][i]=0;
+            }
+        }
+        for(int k:c){
+            for(int i=0;i<m;i++){
+                matrix[i][k]=0;
+            }
+        }
+    }
+}
+
+
+//in space complexity-O(1)
+class Solution {
+    public void setZeroes(int[][] m) {
+        boolean frz=false;
+        boolean fcz=false;
+        int rl=m.length;
+        int cl=m[0].length;
+        for(int i=0;i<cl;i++){
+            if(m[0][i]==0){
+                frz=true;
+            }
+        }
+        for(int i=0;i<rl;i++){
+            if(m[i][0]==0){
+                fcz=true;
+            }
+        }
+        for(int r=1;r<rl;r++){
+            for(int c=1;c<cl;c++){
+                if(m[r][c]==0){
+                    m[0][c]=0;
+                    m[r][0]=0;
+                }
+            }
+        }
+        for(int r=1;r<rl;r++){
+            for(int c=1;c<cl;c++){
+                if(m[0][c]==0 || m[r][0]==0){
+                    m[r][c]=0;
+                }
+            }
+        }
+        if(frz){
+            for(int i=0;i<cl;i++){
+                m[0][i]=0;
+            }
+        }
+        if(fcz){
+            for(int i=0;i<rl;i++){
+                m[i][0]=0;
+            }
+        }
+    }
+}
