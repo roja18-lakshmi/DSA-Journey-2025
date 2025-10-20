@@ -1,0 +1,20 @@
+//https://leetcode.com/problems/count-the-number-of-computer-unlocking-permutations/
+//Day-31
+
+
+class Solution {
+    public int countPermutations(int[] com) {
+        int min=com[0];
+        final int MOD = 1000000007;
+        for(int i=1;i<com.length;i++){
+            if(com[i]<min || com[i]==min){
+                return 0;
+            }
+        }
+        long res = 1;
+        for (int i = 2; i < com.length; i++) {
+            res = (res * i) % MOD;
+        }
+        return (int) res;
+    }
+}
