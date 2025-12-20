@@ -1,0 +1,39 @@
+//https://www.geeksforgeeks.org/problems/find-length-of-loop/1
+
+
+
+
+/*
+class Node {
+    int data;
+    Node next;
+
+    Node(int x) {
+        data = x;
+        next = null;
+    }
+}
+*/
+
+class Solution {
+    public int lengthOfLoop(Node head) {
+        // code here
+        Node s=head;
+        Node f=head.next;
+        while(f!=null && f.next!=null){
+            s=s.next;
+            f=f.next.next;
+            while(s==f){
+                int c=1;
+                f=f.next;
+                while(s!=f){
+                    f=f.next;
+                    c++;
+                }
+                return c;
+            }
+            
+        }
+        return 0;
+    }
+}
