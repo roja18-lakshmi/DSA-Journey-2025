@@ -1,0 +1,15 @@
+//https://leetcode.com/problems/minimum-string-length-after-balanced-removals/
+
+class Solution {
+    public int minLengthAfterRemovals(String s) {
+        int c=0;
+        for(char ch:s.toCharArray()){
+            if(ch=='a'){
+                c++;
+            }else{
+                c--;
+            }
+        }
+        return Math.abs(c);
+    }
+}
