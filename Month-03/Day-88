@@ -1,0 +1,59 @@
+
+//https://leetcode.com/problems/minimum-operations-to-make-binary-palindrome/
+
+class Solution {
+    public int[] minOperations(int[] nums) {
+        int n=nums.length;
+        ArrayList<Integer> t= new ArrayList<>(); 
+        int [] res=new int[n];
+        for(int i=1;i<=5000;i++){
+            if(fun(i)){
+                t.add(i);
+            }  
+        }
+        int k=t.size();
+        for(int i=0;i<n;i++){
+            int l=0;
+            int h=k-1;
+            
+            while(l<h){
+                int mid=(l+h)/2;
+                if(t.get(mid)<nums[i]){
+                    l=mid+1;
+                }else{
+                    h=mid;
+                }
+            }
+            int ans = Math.abs(t.get(l) - nums[i]);
+            if (l > 0) {
+                ans = Math.min(ans, Math.abs(nums[i] - t.get(l - 1)));
+            }
+
+            res[i] = ans;
+        }
+        return res;
+    
+    }
+    public Boolean fun(int n){
+       
+        // String s="";
+        // while(n>0){
+        //     s=n%2+s;
+        //     n=n/2;
+        // }
+        // int l=s.length();
+        // for(int i=0;i<l/2;i++){
+        //     if(s.charAt(i)!=s.charAt(l-i-1)){
+        //         return false;
+        //     }
+        // }
+        int r=0;
+        int t=n;
+        while(t>0){
+            r=(r<<1)|(t&1);
+            t=t>>1;
+
+        }
+        return r==n;
+    }
+}
