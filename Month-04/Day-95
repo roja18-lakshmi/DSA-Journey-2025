@@ -1,0 +1,29 @@
+# https://leetcode.com/problems/maximum-sum-of-three-numbers-divisible-by-three/
+
+class Solution:
+    def maximumSum(self, nums: List[int]) -> int:
+        l0=[]
+        l1=[]
+        l2=[]
+        for i in nums:
+            if i%3==0:
+                l0.append(i)
+            elif i%3==1:
+                l1.append(i)
+            else:
+                l2.append(i)
+        l0.sort(reverse=True)
+        l1.sort(reverse=True)
+        l2.sort(reverse=True)
+        res=0
+        if(len(l0)>=3):
+            res=max(res,l0[0]+l0[1]+l0[2])
+        if(len(l1)>=3):
+            res=max(res,l1[0]+l1[1]+l1[2])
+        if(len(l2)>=3):
+            res=max(res,l2[0]+l2[1]+l2[2])
+        if(len(l0)>0 and len(l1)>0 and len(l2)>0):
+           res=max(res,l0[0]+l1[0]+l2[0]) 
+        return res
+
+        
