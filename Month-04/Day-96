@@ -1,0 +1,16 @@
+//https://leetcode.com/problems/minimum-deletion-cost-to-make-all-characters-equal/
+class Solution {
+    public long minCost(String s, int[] cost) {
+        long[] l=new long[26];
+        long sum=0;
+        long max=0;
+        for(int i=0;i<s.length();i++){
+            char c=s.charAt(i);
+            int idx=c-'a';
+            l[idx]+=cost[i];
+            max=Math.max(max,l[idx]);
+            sum+=cost[i]; 
+        }
+        return sum-max;
+    }
+}
