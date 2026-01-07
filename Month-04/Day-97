@@ -1,0 +1,23 @@
+//https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/
+
+class Solution {
+    public int maxScore(int[] cp, int p) {
+        int n=cp.length;
+        p=n-p;
+        int cs=0;
+        int ts=0;
+        for(int i=0;i<p;i++){
+            cs+=cp[i];
+        }
+        ts=cs;
+        int ms=cs;
+        for(int i=p;i<n;i++){
+            cs+=cp[i]-cp[i-p];
+            if(cs<ms){
+                ms=cs;
+            }
+            ts+=cp[i];
+        }
+        return ts-ms;
+    }
+}
