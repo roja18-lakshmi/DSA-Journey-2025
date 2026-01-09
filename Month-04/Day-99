@@ -1,0 +1,12 @@
+# https://leetcode.com/problems/minimum-cost-to-acquire-required-items/
+class Solution:
+    def minimumCost(self, c1: int, c2: int, cb: int, n1: int, n2: int) -> int:
+        if(cb<=c1 and cb<=c2):
+           return max(n1,n2)*cb
+        t1=c1*n1+c2*n2
+        t2=max(n1,n2)*cb
+        t=min(n1,n2)
+        t3=cb*t+(n1-t)*c1+(n2-t)*c2
+        return min(t1,t2,t3)
+
+       
