@@ -1,0 +1,18 @@
+//https://leetcode.com/problems/smallest-all-ones-multiple/
+class Solution {
+    public int minAllOneMultiple(int k) {
+        if(k%2==0 || k%5==0){
+            return -1;
+        }
+        long r=0;
+        int c=1;
+        while(c<=k){
+            r=(r*10+1)%k;//think like normal hand division
+            if(r==0){
+                return c;
+            }
+            c++;
+        }
+        return -1;
+    }
+}
