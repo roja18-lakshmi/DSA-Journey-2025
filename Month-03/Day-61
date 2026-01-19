@@ -1,0 +1,16 @@
+
+# https://leetcode.com/problems/next-greater-element-ii/
+class Solution:
+    def nextGreaterElements(self, nums: List[int]) -> List[int]:
+        n=len(nums)
+        res=[-1]*n
+        l=[]
+        for i in range(2*n-1,-1,-1):
+            idx=i%n
+            while(len(l)!=0 and nums[idx]>=l[-1]):
+                l.pop()
+            if(i<n and len(l)!=0):
+                res[i]=l[-1]
+            l.append(nums[idx])
+        return res
+        # t(n)=O(4n)

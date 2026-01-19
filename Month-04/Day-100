@@ -1,0 +1,25 @@
+#https://leetcode.com/problems/divide-two-integers/
+class Solution:
+    def divide(self, dd: int, ds: int) -> int:
+        if(dd==ds):
+            return 1
+        sign=True #+ve
+        if(dd>0 and ds<0) or (dd<0 and ds>0):
+            sign=False
+        n=abs(dd)
+        d=abs(ds)
+        ans=0
+        while(n>=d):
+            c=0
+            while((d<<(c+1)<=n)):
+                c+=1
+            n=n-(d<<c)
+            ans+=1<<c
+        if(ans>=(1<<31) and sign):
+            return (1<<31)-1
+        if(ans>=(1<<31) and not sign):
+            return -(1<<31)
+        if(not sign):
+            return -ans
+        return ans
+#if it is java take n and d long 
