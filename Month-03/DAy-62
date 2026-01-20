@@ -1,0 +1,19 @@
+//https://www.geeksforgeeks.org/problems/number-of-nges-to-the-right/1
+class Solution {
+    public static int[] count_NGE(int arr[], int ind[]) {
+        
+        // code here
+        int[] res=new int[ind.length];
+        for(int i=0;i<ind.length;i++){
+            int t=arr[ind[i]];
+            int c=0;
+            for(int j=ind[i]+1;j<arr.length;j++){
+                if(arr[j]>t){
+                    c++;
+                }
+            }
+            res[i]=c;
+        }
+        return res;
+    }
+}
